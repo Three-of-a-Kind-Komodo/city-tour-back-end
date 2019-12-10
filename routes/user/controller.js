@@ -119,7 +119,7 @@ module.exports = {
     try {
       const { email, password } = req.body;
       const existedUser = await User.findOne({ email });
-
+      console.log(existedUser.email);
       if (existedUser) {
         const valid = await bcrypt.compareSync(password, existedUser.password);
 

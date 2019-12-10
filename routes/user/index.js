@@ -9,8 +9,10 @@ const {
   login
 } = require("./controller");
 
-router.get("/", getAlluser);
-router.get("/:id", getUserById);
+const { authorization } = require("../../helpers/auth");
+
+router.get("/",authorization, getAlluser);
+router.get("/:id",authorization, getUserById);
 router.post("/register", register);
 router.delete("/delete/:id", deleteUserById);
 router.post("/login", login);
