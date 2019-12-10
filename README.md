@@ -7,7 +7,7 @@ Back-End Blusukan.com menggunakan noSQL
 ### User
 
 ```
-id: integer
+id: auto
 username: string
 email: string
 password: string
@@ -16,7 +16,7 @@ password: string
 ### Content
 
 ```
-id: integer
+id: auto
 type: string
 title: string
 content: string
@@ -25,11 +25,11 @@ content: string
 ### Review
 
 ```
-id: integer
+id: auto
 type: string
 title: string
 coment: string
-rating: integer
+rating: number
 ```
 
 ## Route
