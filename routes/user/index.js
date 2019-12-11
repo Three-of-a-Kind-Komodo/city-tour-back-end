@@ -11,10 +11,16 @@ const {
 
 const { authorization } = require("../../helpers/auth");
 
-router.get("/",authorization, getAlluser);
-router.get("/:id",authorization, getUserById);
-router.post("/register", register);
+// for testing without authorization
+router.get("/", getAlluser);
+router.get("/:id", getUserById);
 router.delete("/delete/:id", deleteUserById);
+
+// // with authorization
+// router.get("/", authorization, getAlluser);
+// router.get("/:id", authorization, getUserById);
+// router.delete("/delete/:id", authorization, deleteUserById);
+router.post("/register", register);
 router.post("/login", login);
 
 module.exports = router;
