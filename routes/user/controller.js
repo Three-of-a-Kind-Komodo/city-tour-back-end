@@ -10,6 +10,8 @@ module.exports = {
   getAlluser: (req, res) => {
     try {
       User.find()
+        .populate("content")
+        .populate("review")
         .then(result =>
           res.send({
             message: "All user",
@@ -29,6 +31,8 @@ module.exports = {
   getUserById: (req, res) => {
     try {
       User.findById({ _id: req.params.id })
+        .populate("content")
+        .populate("review")
         .then(result =>
           res.send({
             message: "Your user with ID",
