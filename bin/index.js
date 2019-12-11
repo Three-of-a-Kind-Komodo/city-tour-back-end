@@ -33,8 +33,7 @@ db.once("open", function() {
   // we're connected!
 });
 
-server.listen(port, () => console.log(port)
-);
+server.listen(port, () => console.log(port));
 server.on("error", onError);
 server.on("listening", onListening);
 
