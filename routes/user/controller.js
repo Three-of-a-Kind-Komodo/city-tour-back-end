@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -12,12 +13,13 @@ module.exports = {
       User.find()
         .populate("content")
         .populate("review")
-        .then(result =>
+        .then(result => {
+          console.log(result);
           res.send({
             message: "All user",
             result
-          })
-        )
+          });
+        })
         .catch(error =>
           res.send({
             message: "error when get all user",
