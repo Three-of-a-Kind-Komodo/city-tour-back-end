@@ -2,6 +2,12 @@
 
 Back-End Blusukan.com menggunakan noSQL
 
+## Setting
+
+- `clone` this repository
+- use `yarn` to install depedencies
+- use `yarn dev` to start this back-end
+
 ## List Collection
 
 ### User
