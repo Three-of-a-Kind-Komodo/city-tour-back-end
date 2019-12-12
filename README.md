@@ -77,8 +77,8 @@ login: .post (URL+ /users/login)
 
 ```
 getAllContent: .get (URL+ /contents/)
-getAllContentByTypeContent: .get (URL+ /contents/:type)
-getAllContentByUserId: .get (URL+ /contents/:id)
+getAllContentByContentType: .get (URL+ /content-type/:type)
+getAllContentByUserId: .get (URL+ /user/:id)
 addContent: .post (URL+ /contents/)
 updateContentById: .put (URL+ /contents/:id)
 deleteContentById: .delete (URL+ /contents/)
