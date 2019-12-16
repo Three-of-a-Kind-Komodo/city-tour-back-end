@@ -38,24 +38,35 @@ module.exports = {
 
   // ================================ addContent ===============================================
 
-  addContent: (req, res) => {
+  addContent: async (req, res) => {
     const { type, title, content, imageurl, rating, isactive, user } = req.body;
 
-    Content.create(req.body)
-      .then(result => {
-        User.findOne({ _id: user }, (err, user) => {
-          if (User) {
-            // The below two lines will add the newly saved review's
-            // ObjectID to the the User's reviews array field
-            User.contents.push(Content._id);
-            User.save();
-            res.json({ message: "Content created!" });
-          }
-        });
-      })
-      .catch(error => {
-        res.status(500).json({ error });
+    try {
+      const newContent = await Content.create({
+        type,
+        title,
+        content,
+        imageurl,
+        rating,
+        isactive,
+        user: req.params.id
       });
+      if (newContent) {
+        const user = await User.findByIdAndUpdate(
+          { _id: req.params.id },
+          { $push: { contents: newContent._id } },
+          { new: true }
+        );
+        return res.status(201).json({
+          message: `Content created, ${user.name} now have content with id ${newContent._id}`
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        message: "addContent failed",
+        error: error.message
+      });
+    }
   },
   // ================================ updateContentById ========================================
   updateContentById: (req, res) => {},

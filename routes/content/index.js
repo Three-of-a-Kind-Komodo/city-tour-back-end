@@ -3,7 +3,6 @@ var router = express.Router();
 
 const {
   getAllContent,
-  getAllContentQuery,
   addContent,
   updateContentById,
   deleteContentById
@@ -13,8 +12,7 @@ const { authorization } = require("../../helpers/auth");
 
 // for testing without authorization
 router.get("/", getAllContent);
-router.get("/content/", getAllContentQuery);
-router.post("/", addContent);
+router.post("/:id", addContent);
 router.put("/:id", updateContentById);
 router.delete("/", deleteContentById);
 
