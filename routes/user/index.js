@@ -7,7 +7,7 @@ const {
   register,
   deleteUserById,
   login
-} = require("./controller");
+} = require("./controllers");
 
 const { authorization } = require("../../helpers/auth");
 

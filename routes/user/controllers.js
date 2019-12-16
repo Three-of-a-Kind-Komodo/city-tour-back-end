@@ -10,8 +10,8 @@ module.exports = {
   getAlluser: (req, res) => {
     try {
       User.find()
-        .populate("content")
-        .populate("review")
+        .populate("Content")
+        .populate("Review")
         .then(result => {
           console.log(result);
           res.send({
@@ -25,7 +25,12 @@ module.exports = {
             error: error.stack
           })
         );
-    } catch (error) {}
+    } catch (error) {
+      return res.status(500).json({
+        message: "error in getAlluser route",
+        error: error.message
+      });
+    }
   },
 
   // ================================ getUserById ===============================
