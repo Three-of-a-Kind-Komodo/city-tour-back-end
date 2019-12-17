@@ -6,6 +6,7 @@ const ContentSchema = new Schema({
   title: String,
   content: String,
   imageurl: String,
+  mapurl: String,
   rating: Number,
   isactive: Boolean,
 

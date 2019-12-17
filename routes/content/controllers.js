@@ -39,7 +39,16 @@ module.exports = {
   // ================================ addContent ===============================================
 
   addContent: async (req, res) => {
-    const { type, title, content, imageurl, rating, isactive, user } = req.body;
+    const {
+      type,
+      title,
+      content,
+      imageurl,
+      mapurl,
+      rating,
+      isactive,
+      user
+    } = req.body;
 
     try {
       const newContent = await Content.create({
@@ -47,6 +56,7 @@ module.exports = {
         title,
         content,
         imageurl,
+        mapurl,
         rating,
         isactive,
         user: req.params.id
