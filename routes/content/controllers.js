@@ -34,7 +34,29 @@ module.exports = {
   },
 
   // ================================   getAllContentQuery =====================================
-  getAllContentQuery: (req, res) => {},
+  getContentById: (req, res) => {
+    try {
+      Content.findById({ _id: req.params.id })
+        .populate("review")
+        .then(result =>
+          res.send({
+            message: "Your content with ID",
+            result
+          })
+        )
+        .catch(error =>
+          res.send({
+            message: "error when get content by ID",
+            error: error.stack
+          })
+        );
+    } catch (error) {
+      return res.status(500).json({
+        message: "error in getContentById route",
+        error: error.message
+      });
+    }
+  },
 
   // ================================ addContent ===============================================
 
