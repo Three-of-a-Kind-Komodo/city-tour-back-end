@@ -40,7 +40,8 @@ app.post("/contacts", async (req, res) => {
       from: "3ofakindkomodo@gmail.com",
       to: email,
       subject: "Thank you for contacting us",
-      text: message
+      text:
+        "Thank you for reaching us, we will take time respond to your query, in the meantime please check out the updates from www.blusukan.netlify.com"
     };
 
     // let message = {
