@@ -53,13 +53,12 @@ app.post("/contacts", async (req, res) => {
         "Thank you for reaching us, we will take time respond to your query, in the meantime please check out the updates from www.blusukan.netlify.com"
     };
 
-    let mailoptions2 = {
-      from: "3ofakindkomodo@gmail.com",
-      to: email,
-      subject: "Query from" + name,
-      text:
-        message
-    };
+    // let mailoptions2 = {
+    //   from: "3ofakindkomodo@gmail.com",
+    //   to: email,
+    //   subject: "Query from" + name,
+    //   text: message
+    // };
     // let message = {
     //   from: " 'Admin 👻' <3ofakindkomodo@gmail.com>",
     //   to: "farisibrahmi@gmail.com",
@@ -85,25 +84,6 @@ app.post("/contacts", async (req, res) => {
       error: error.message
     });
   }
-});
-
-await emailToAdmin.sendMail(mailoptions, err => {
-  if (!err) {
-    res.send({
-      message: "Email send"
-    });
-  } else {
-    res.status(400).send({
-      message: "send email fail"
-    });
-  }
-});
-} catch (error) {
-res.status(400).send({
-  message: "something error when send email",
-  error: error.message
-});
-}
 });
 
 module.exports = app;
