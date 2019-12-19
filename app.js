@@ -27,7 +27,16 @@ app.post("/contacts", async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    let transporter = nodemailer.createTransport({
+    let autoReply = nodemailer.createTransport({
+      service: "gmail",
+      secure: false,
+      auth: {
+        user: "3ofakindkomodo@gmail.com",
+        pass: "3ofakind"
+      }
+    });
+
+    let emailToAdmin = nodemailer.createTransport({
       service: "gmail",
       secure: false,
       auth: {
@@ -44,6 +53,13 @@ app.post("/contacts", async (req, res) => {
         "Thank you for reaching us, we will take time respond to your query, in the meantime please check out the updates from www.blusukan.netlify.com"
     };
 
+    let mailoptions2 = {
+      from: "3ofakindkomodo@gmail.com",
+      to: email,
+      subject: "Query from" + name,
+      text:
+        message
+    };
     // let message = {
     //   from: " 'Admin 👻' <3ofakindkomodo@gmail.com>",
     //   to: "farisibrahmi@gmail.com",
@@ -52,7 +68,7 @@ app.post("/contacts", async (req, res) => {
     //   html: "<h1>Thank you, the booking has been booked, please pay later</h1>"
     // };
 
-    await transporter.sendMail(mailoptions, err => {
+    await autoReply.sendMail(mailoptions, err => {
       if (!err) {
         res.send({
           message: "Email send"
@@ -69,6 +85,25 @@ app.post("/contacts", async (req, res) => {
       error: error.message
     });
   }
+});
+
+await emailToAdmin.sendMail(mailoptions, err => {
+  if (!err) {
+    res.send({
+      message: "Email send"
+    });
+  } else {
+    res.status(400).send({
+      message: "send email fail"
+    });
+  }
+});
+} catch (error) {
+res.status(400).send({
+  message: "something error when send email",
+  error: error.message
+});
+}
 });
 
 module.exports = app;
