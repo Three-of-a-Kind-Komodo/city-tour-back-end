@@ -67,6 +67,7 @@ module.exports = {
       content,
       imageurl,
       mapurl,
+      mapembed,
       rating,
       isactive,
       user
@@ -78,6 +79,7 @@ module.exports = {
         title,
         content,
         imageurl,
+        mapembed,
         mapurl,
         rating,
         isactive,
